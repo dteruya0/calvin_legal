@@ -19,10 +19,10 @@ int pertence(int x, int v[], int n)
     while (i < n)
     {
         if (x == v[i])
-            return (0);
+            return (1);
         i++;
     }
-    return (1);
+    return (0);
 }
 
 int contaElementos(int e, int v[], int n)
@@ -39,12 +39,10 @@ int contaElementos(int e, int v[], int n)
     return (amount);
 }
 
-void    imprimeVetor(int v[], int tamV)
+void imprimeVetor(int v[], int tamV)
 {
     int i = 0;
-
-    while (i < tamV)
-    {
+    while (i < tamV) {
         printf("%d\n", v[i]);
         i++;
     }
