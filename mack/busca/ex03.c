@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "../funcoesDT.h"
 
-int busca_binaria(int x, int v[], int n)
+int busca_binaria(int x, int v[], int n, int *comparacoes)
 {
     int inicio = 0;
     int fim  = n - 1;
@@ -18,19 +18,21 @@ int busca_binaria(int x, int v[], int n)
             return (meio);
         else
             inicio = meio + 1;
+        (*comparacoes)++;
     }
     return (-1);
 }
 
-int busca_linear(int x, int v[], int n)
+int busca_linear(int chave, int v[], int n, int *comparacoes)
 {
     int i = 0;
 
     while (i < n)
     {
-        if (x == v[i])
+        if (chave == v[i])
             return (i);
         i++;
+        (*comparacoes)++;
     }
     return (-1);
 }
@@ -63,13 +65,18 @@ void geraVetorAleatorioOrdenadoCrescente( int v[], int n, int min, int max)
 
 int main(void)
 {
-    int v[10];
-    geraVetorAleatorioOrdenadoCrescente(v, 10, 0, 10);
-    ordena(v, 10);
-    imprimeVetor(v, 10);
+    int binaria = 0;
+    int linear = 0;
+    int v[200];
+    geraVetorAleatorioOrdenadoCrescente(v, 200, 0, 200);
+    ordena(v, 200);
+    //imprimeVetor(v, 10);
+    //printf("\n");
+    printf("%d\n", busca_binaria(104, v, 200, &binaria));
+    printf("%d\n", busca_linear(104, v, 200, &linear));
     printf("\n");
-    printf("%d\n", busca_binaria(4, v, 10));
-    printf("%d\n", busca_linear(4, v, 10));
+    printf("%d\n", binaria);
+    printf("%d\n", linear);
 
 
     return (0);
